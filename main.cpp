@@ -90,9 +90,20 @@ int main() {
 
   words.close();
 
+  std::fstream crimes("crimes.txt", std::ios::in);
+  if(!crimes.is_open()) {
+    std::cerr << "Failed to open crimes.txt";
+    return EXIT_FAILURE;
+  }
+
+  std::vector<std::string> CrimeList;
+  while(std::getline(crimes, line))
+    CrimeList.push_back(line);
+
   // TODO: reimplement using the C++11 random library
   srand(clock());
   std::string CorrectWord = lines[rand() % lines.size()];
+  std::string crime = CrimeList[rand() % CrimeList.size()];
 
   // Maybe not the best solution
   std::set<char> Valids, Corrects, Incorrects;
@@ -102,7 +113,8 @@ int main() {
   size_t StrikesLeft = sizeof(gallows)/sizeof(char *);
   while(Valids.size() && StrikesLeft) {
     // safe because loop exits if StrikesLeft == 0
-    std::cout << gallows[StrikesLeft - 1] << "\n\n";
+    std::cout << gallows[StrikesLeft - 1] << "\n" <<
+                 "Crime: He " << crime << "...\n\n";
 
     std::cout << "Word: ";
     for(const char c : CorrectWord)
