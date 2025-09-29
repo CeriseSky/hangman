@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <cstdint>
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
@@ -76,7 +77,68 @@ const char *gallows[] = {
   "Hangman is safe!"
 };
 
+#define STREAK_COL_COMPLETE "\033[31;43m"
+#define STREAK_COL_INCOMPLETE "\033[37;100m"
+#define COL_RESET "\033[0m"
+
+#define SECS_PER_DAY 86400
+#define DAY_FLOOR(x) ((x)/SECS_PER_DAY*SECS_PER_DAY)
+
+#define STREAK_FILE "streak.dat"
+
+class Streak {
+  public:
+    // Timestamps are in days since the epoch
+    uint64_t start;
+    uint64_t renew;
+
+    Streak() { reset(); }
+
+    // prints number of days into the streak, in the correct colour,
+    // and also resets the streak if it needs to
+    void print() {
+      uint64_t now = time(nullptr);
+      bool recentlyRenewed = now - DAY_FLOOR(renew) <
+                             SECS_PER_DAY && !isNew();
+      std::cout << (recentlyRenewed ? STREAK_COL_COMPLETE : 
+                                      STREAK_COL_INCOMPLETE);
+
+      bool streakLost = isNew() || now - renew >= SECS_PER_DAY;
+      if(streakLost) {
+        reset();
+        std::cout << "0 days" << COL_RESET;
+        return;
+      }
+
+      uint64_t days = now / SECS_PER_DAY
+                    - start / SECS_PER_DAY
+                    + recentlyRenewed;
+      std::cout << days << " day" << (days != 1 ? "s" : "") << COL_RESET;
+    }
+
+    void reset() { start = time(nullptr); renew = start; }
+
+  private:
+      bool isNew() { return start == renew; }
+};
+
 int main() {
+  Streak streak;
+
+  std::fstream streakFile(STREAK_FILE, std::ios::in);
+  if(!streakFile.is_open() ||
+     !streakFile.read((char *)&streak,
+                      sizeof(streak))
+                .good()) {
+    std::cerr << "Warning: Failed to read streak file, starting new one\n";
+    streak.reset(); // necessary in case of a partial read
+  }
+  streakFile.close();
+
+  std::cout << "Streak: ";
+  streak.print();
+  std::cout << '\n';
+
   std::fstream words("words.txt", std::ios::in);
   if(!words.is_open()) {
     std::cerr << "Failed to open words.txt\n";
@@ -100,12 +162,10 @@ int main() {
   while(std::getline(crimes, line))
     CrimeList.push_back(line);
 
-  // TODO: reimplement using the C++11 random library
   srand(clock());
   std::string CorrectWord = lines[rand() % lines.size()];
   std::string crime = CrimeList[rand() % CrimeList.size()];
 
-  // Maybe not the best solution
   std::set<char> Valids, Corrects, Incorrects;
   for(const char c : CorrectWord)
     Valids.insert(tolower(c));
@@ -118,7 +178,7 @@ int main() {
 
     std::cout << "Word: ";
     for(const char c : CorrectWord)
-      std::cout << (Corrects.contains(c) ? c : '_');
+      std::cout << (Corrects.contains(tolower(c)) ? c : '_');
     std::cout << '\n';
 
     std::cout << "Incorrect guesses: ";
@@ -146,6 +206,23 @@ int main() {
                     << '\n';
 
   std::cout << "The word was: " << CorrectWord << '\n';
+
+  if(Valids.empty())
+    streak.renew = time(nullptr);
+
+  streakFile.open("streak.dat", std::ios::out);
+  if(!streakFile.is_open() ||
+     !streakFile.write((char *)&streak,
+                       sizeof(streak))
+                .good()) {
+    std::cerr << "Error: Failed to save streak\n";
+    return EXIT_FAILURE;
+  }
+  streakFile.close();
+
+  std::cout << "Streak: ";
+  streak.print();
+  std::cout << '\n';
 
   return EXIT_SUCCESS;
 }
