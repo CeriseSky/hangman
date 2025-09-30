@@ -81,6 +81,8 @@ const char *gallows[] = {
 #define STREAK_COL_INCOMPLETE "\033[37;100m"
 #define COL_RESET "\033[0m"
 
+#define CLEAR_SCR "\033[2J\033[H"
+
 #define SECS_PER_DAY 86400
 #define DAY_FLOOR(x) ((x)/SECS_PER_DAY*SECS_PER_DAY)
 
@@ -135,10 +137,6 @@ int main() {
   }
   streakFile.close();
 
-  std::cout << "Streak: ";
-  streak.print();
-  std::cout << '\n';
-
   std::fstream words("words.txt", std::ios::in);
   if(!words.is_open()) {
     std::cerr << "Failed to open words.txt\n";
@@ -172,6 +170,12 @@ int main() {
 
   size_t StrikesLeft = sizeof(gallows)/sizeof(char *);
   while(Valids.size() && StrikesLeft) {
+    std::cout << CLEAR_SCR;
+
+    std::cout << "Streak: ";
+    streak.print();
+    std::cout << '\n';
+
     // safe because loop exits if StrikesLeft == 0
     std::cout << gallows[StrikesLeft - 1] << "\n" <<
                  "Crime: He " << crime << "...\n\n";
