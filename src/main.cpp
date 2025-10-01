@@ -1,43 +1,19 @@
 #include "ansi.hpp"
 #include <cstddef>
 #include <cstdlib>
-#include <fstream>
 #include "gallows.hpp"
 #include <iostream>
+#include "listfile.hpp"
 #include <set>
 #include "streak.hpp"
 #include <string>
-#include <vector>
 
 int main() {
   Streak streak;
+  ListFile words("words.txt"), crimes("crimes.txt");
 
-  std::fstream words("words.txt", std::ios::in);
-  if(!words.is_open()) {
-    std::cerr << "Failed to open words.txt\n";
-    return EXIT_FAILURE;
-  }
-
-  std::vector<std::string> lines;
-  std::string line;
-  while(std::getline(words, line))
-    lines.push_back(line);
-
-  words.close();
-
-  std::fstream crimes("crimes.txt", std::ios::in);
-  if(!crimes.is_open()) {
-    std::cerr << "Failed to open crimes.txt";
-    return EXIT_FAILURE;
-  }
-
-  std::vector<std::string> CrimeList;
-  while(std::getline(crimes, line))
-    CrimeList.push_back(line);
-
-  srand(clock());
-  std::string CorrectWord = lines[rand() % lines.size()];
-  std::string crime = CrimeList[rand() % CrimeList.size()];
+  std::string CorrectWord = words.get_random();
+  std::string crime = crimes.get_random();
 
   std::set<char> Valids, Corrects, Incorrects;
   for(const char c : CorrectWord)
