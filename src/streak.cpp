@@ -52,5 +52,6 @@ bool Streak::ongoing() {
 }
 
 size_t Streak::length() {
-  return time(nullptr)/SECS_PER_DAY - mTime.start/SECS_PER_DAY;
+  return time(nullptr)/SECS_PER_DAY - mTime.start/SECS_PER_DAY
+         + recentlyRenewed();
 }
