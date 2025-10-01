@@ -41,7 +41,8 @@ int main() {
 
   std::set<char> Valids, Corrects, Incorrects;
   for(const char c : CorrectWord)
-    Valids.insert(tolower(c));
+    if(std::isalpha(c))
+      Valids.insert(tolower(c));
 
   size_t StrikesLeft = sizeof(gallows)/sizeof(char *);
   while(Valids.size() && StrikesLeft) {
@@ -57,7 +58,8 @@ int main() {
 
     std::cout << "Word: ";
     for(const char c : CorrectWord)
-      std::cout << (Corrects.contains(tolower(c)) ? c : '_');
+      std::cout << (!std::isalpha(c) || Corrects.contains(tolower(c)) ?
+                    c : '_');
     std::cout << '\n';
 
     std::cout << "Incorrect guesses: ";
