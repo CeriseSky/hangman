@@ -3,3 +3,4 @@ program
 .cache/
 streak.dat
 tmp/
+tools/bin/
