@@ -2,3 +2,4 @@ compile_commands.json
 program
 .cache/
 streak.dat
+tmp/
