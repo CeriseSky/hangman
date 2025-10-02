@@ -29,7 +29,7 @@ int main(int argc, char *argv[argc]) {
     total += counts[i];
 
   int lineCount = 0;
-  constexpr int lineLimit = 4;
+  constexpr int lineLimit = 3;
   for(int i = 0; i < ALPHABET_LENGTH; i++) {
     int highestIdx = 0;
     for(int j = 0; j < ALPHABET_LENGTH; j++)
@@ -37,7 +37,7 @@ int main(int argc, char *argv[argc]) {
         highestIdx = j;
 
     if(counts[highestIdx]) {
-      printf("%c: %i (%.2f%)", highestIdx + 'A', counts[highestIdx],
+      printf("%c: %i (%.2f%%)", highestIdx + 'A', counts[highestIdx],
              (float)counts[highestIdx] / (float)total * 100.0);
       if(++lineCount >= lineLimit || i + 1 >= ALPHABET_LENGTH) {
         printf("\n");
