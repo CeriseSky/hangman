@@ -1,6 +1,7 @@
 a
 about
 abuse
+activity
 actual
 actuality
 actuators
@@ -70,12 +71,14 @@ coconut
 coffee
 Cole
 college
+compartmentalises
 completely
 computer
 Computer Science
 constant
 contains
 continental
+conversation
 copy
 court
 crescendo
@@ -95,6 +98,7 @@ debate
 deceased
 defense
 definition
+delightful
 deliverance
 depressed
 destination
@@ -150,6 +154,7 @@ fluffy
 fly
 football
 for
+forgot
 four
 freely
 from
@@ -160,6 +165,7 @@ future
 gallows
 gander
 gaze
+generation
 genuinely
 get
 getting
@@ -194,7 +200,9 @@ how
 husband
 hypothesis
 I
+ideologies
 impossible
+inclined
 include
 individually
 input
@@ -245,6 +253,7 @@ lynx
 main
 major
 make
+making
 man
 manages
 mandatory
@@ -294,6 +303,7 @@ particularly
 partner
 pass
 peanut
+people
 perfectly
 philanthropy
 pick
@@ -305,6 +315,7 @@ pointer
 police
 polio
 politics
+portrayed
 poster
 potato
 pottery
@@ -315,6 +326,7 @@ princess
 print
 prison
 probably
+proceed
 programming
 pseudopseudohypoparathyroidism
 put
@@ -397,6 +409,7 @@ stream
 strife
 string
 stripes
+succeeding
 success
 such
 suffragette
@@ -405,7 +418,9 @@ supercalifragilisticexpialidocious
 supposed
 suspiciously
 sweet
+systemic
 table
+taliological
 teacher
 team
 technology
@@ -427,11 +442,14 @@ time
 timetable
 tiny
 told
+transcript
 trend
 triple
+truly
 tuberculosis
 turn
 two-hundred
+typing
 unclassified
 understand
 unicorn
@@ -442,6 +460,7 @@ universal
 up
 update
 using
+utilitarianism
 valid
 vector
 Venezuala

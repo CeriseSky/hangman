@@ -8,9 +8,13 @@
 #include "streak.hpp"
 #include <string>
 
-int main() {
+int main(int argc, char **argv) {
+  const char *wordsList = "words.txt";
+  if(argc == 2)
+    wordsList = argv[1];
+
   Streak streak;
-  ListFile words("words.txt"), crimes("crimes.txt");
+  ListFile words(wordsList), crimes("crimes.txt");
 
   std::string CorrectWord = words.get_random();
   std::string crime = crimes.get_random();

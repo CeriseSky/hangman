@@ -1,13 +1,7 @@
 # Using custom word lists
-
-First, unlink the current words file
+By default, the file linked to words.txt is used
 ```
-$ unlink words.txt
-```
-
-Then, link the words.txt to the file you want
-```
-$ ln -s <WORD FILE> words.txt
+$ ./program <path to words file>
 ```
 
 ## Built in word lists

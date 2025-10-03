@@ -1,1 +1,1 @@
-words/wave1.txt
+words/edition1.txt
