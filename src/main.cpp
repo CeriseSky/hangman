@@ -24,9 +24,11 @@ int main() {
   while(Valids.size() && StrikesLeft) {
     std::cout << CLEAR_SCR;
 
-    std::cout << "Streak: ";
+    std::cout << "Day Streak: ";
     streak.print();
     std::cout << '\n';
+
+    std::cout << "Correct Streak: " << streak.getCorrect() << '\n';
 
     // safe because loop exits if StrikesLeft == 0
     std::cout << gallows[StrikesLeft - 1] << "\n" <<
@@ -64,7 +66,10 @@ int main() {
 
   std::cout << "The word was: " << CorrectWord << '\n';
 
-  if(Valids.empty()) streak.renew();
+  if(Valids.empty()) {
+    streak.renew();
+    streak.incrementCorrect();
+  } else streak.resetCorrect();
 
   std::cout << "Streak: ";
   streak.print();

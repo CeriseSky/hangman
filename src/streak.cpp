@@ -6,7 +6,10 @@
 
 Streak::Streak() {
   path = STREAK_FILE;
-  if(!read()) reset();
+  if(!read()) {
+    reset();
+    mTime.correct = 0;
+  }
 }
 
 Streak::Streak(std::string path) {

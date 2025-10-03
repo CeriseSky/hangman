@@ -26,12 +26,17 @@ class Streak {
     bool read();
     bool write();
 
+    void incrementCorrect() { mTime.correct++; }
+    void resetCorrect() { mTime.correct = 0; }
+    uint16_t getCorrect() { return mTime.correct; }
+
   private:
     // timestamps are in seconds since the epoch
     // doesn't use time_t because its size is implementation defined
     struct {
       uint64_t start;
       uint64_t renew;
+      uint16_t correct;
     } __attribute__((packed)) mTime;
 
     std::string path;
