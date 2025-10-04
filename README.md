@@ -12,4 +12,5 @@ $ ./program <path to words file>
 - francais.txt: All words from french without diacritics. Licensed under
   the MIT license in licenses/francais_mit.txt and available at
   https://github.com/Taknok/French-Wordlist
+- hyphens: All words from dictionary.txt that contain a hyphen
 
