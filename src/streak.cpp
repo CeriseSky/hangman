@@ -51,7 +51,8 @@ bool Streak::recentlyRenewed() {
 }
 
 bool Streak::ongoing() {
-  return  !isNew() && time(nullptr) - mTime.renew < SECS_PER_DAY;
+  time_t limit = DAY_FLOOR(mTime.renew + 2*SECS_PER_DAY);
+  return  !isNew() && time(nullptr) < limit;
 }
 
 size_t Streak::length() {
