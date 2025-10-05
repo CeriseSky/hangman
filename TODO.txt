@@ -1,4 +1,3 @@
-Allow user to choose a word file
 Implement streak freezes
 Implement gambling for streak freezes and other future goodies
 Add future goodies
