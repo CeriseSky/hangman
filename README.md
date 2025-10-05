@@ -1,7 +1,3 @@
-# Changes from f030d3b
-- In previous versions, streaks would reset 24 hours after the last renew.
-  Now, the user has until the end of the next day (midnight UTC).
-
 # Using custom word lists
 By default, the file linked to words.txt is used
 ```
