@@ -1,0 +1,39 @@
+(browser) quit: ctrl + q
+(browser) close tab: ctrl + w
+(terminal) end of line: ctrl + e
+(browser) refresh: ctrl + r
+(browser) new tab: ctrl + t
+(text) redo: ctrl + y
+(terminal) delete line: ctrl + u
+(text) italic: ctrl + i
+(file) open: ctrl + o
+(file) print: ctrl + p
+
+(text) select all: ctrl + a
+(file) save: ctrl + s
+(browser) add bookmark: ctrl + d
+(text) find: ctrl + f
+(file) go to: ctrl + g
+(text) search & replace: ctrl + h
+(browser) downloads: ctrl + j
+(browser) search google: ctrl + k
+(browser) enter URL: ctrl + l
+
+(text) undo: ctrl + z
+(text) cut: ctrl + x
+(text)copy: ctrl + c
+(terminal) cancel: ctrl + c
+(text) paste: ctrl + v
+(text) bold: ctrl + b
+(file) new: ctrl + n
+(browser) mute tab: ctrl + m
+
+(browser) reopen tab: ctrl + shift + t
+(program) close: alt + F4
+(program) resize: alt + F7
+(program) maximise: alt + F10
+(text) emoji: win + semicolon
+(browser) refresh: F5
+(browser) fullscreen: F11
+(browser) inspect element: F12
+(browser) inspect element: ctrl + shift + i
